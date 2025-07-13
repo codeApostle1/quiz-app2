@@ -3,7 +3,9 @@ const options = document.querySelector('.options')
 
 const next = document.getElementById('next')
 const error = document.querySelector('.error')
-const endBtn = document.getElementById('end')
+const endNav = document.getElementById('end')
+const endBtn = document.querySelector('.end-btn') 
+const buttons = document.querySelector('.buttons')
 
 
 const quizQuestions = [
@@ -131,7 +133,7 @@ firstOption.forEach((option)=>{
       array = bibleQuestions;
     }
     
-    if (option.textContent === 'Tricky') {
+    if (option.textContent === 'Trick') {
       array = trickyQuestions
     }
   })
@@ -146,6 +148,7 @@ questionSect.innerHTML = array[start].question
  
 options.innerHTML = array[start].answers.map((opt,i)=> {
   let index = i + 1 
+
   return`
   <button class ='option'>${index} ${opt}</button>
   
@@ -169,13 +172,16 @@ function go() {
     questionSect.innerHTML = "Quiz Completed!";
     options.innerHTML = "";
     next.style.display = "none";
-    endBtn.textContent = 'Restart'
-    endBtn.setAttribute('href', 'index.html')
+    endNav.textContent = 'Restart'
+    endNav.setAttribute('href', 'index.html')
     return;
   }
   
   showQuestion()
-  next.textContent = 'next'}
+  next.textContent = 'next'
+  endBtn.style.display = 'block'
+ 
+}
   else {
     error.style.color = 'red'
     error.textContent = "you haven't made a Choice boss"
